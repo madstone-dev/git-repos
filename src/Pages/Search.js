@@ -47,9 +47,11 @@ export default function Search() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setTotalResults(data.total_count);
+        setTotalResults(data.total_count > 1000 ? 1000 : data.total_count);
         setKeyword(keyword);
-        setTotalPage(Math.ceil(data.total_count / 30));
+        setTotalPage(
+          Math.ceil(data.total_count > 1000 ? 1000 / 30 : data.total_count / 30)
+        );
         setRepos(data.items);
         setLoading(false);
       });
