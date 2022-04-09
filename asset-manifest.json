@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/git-repos/static/css/main.d2379ed6.css",
-    "main.js": "/git-repos/static/js/main.ffec7002.js",
+    "main.js": "/git-repos/static/js/main.f4cb8ecb.js",
     "static/media/Pulse-1s-200px.png": "/git-repos/static/media/Pulse-1s-200px.e4432289e4696b19b19c.png",
     "index.html": "/git-repos/index.html",
     "main.d2379ed6.css.map": "/git-repos/static/css/main.d2379ed6.css.map",
-    "main.ffec7002.js.map": "/git-repos/static/js/main.ffec7002.js.map"
+    "main.f4cb8ecb.js.map": "/git-repos/static/js/main.f4cb8ecb.js.map"
   },
   "entrypoints": [
     "static/css/main.d2379ed6.css",
-    "static/js/main.ffec7002.js"
+    "static/js/main.f4cb8ecb.js"
   ]
 }
