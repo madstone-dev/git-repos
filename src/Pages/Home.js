@@ -69,7 +69,7 @@ export default function Issue() {
       setLoading(false);
     };
     mergeIssues();
-  }, [location.search, getRepos]);
+  }, [location.search, getRepos, navigate]);
 
   if (loading)
     return (
