@@ -1,6 +1,6 @@
 {
   "homepage": "https://madstone-dev.github.io/git-repos",
-  "name": "payhere-git",
+  "name": "git-repos",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
