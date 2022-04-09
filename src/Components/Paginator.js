@@ -10,7 +10,10 @@ export default function Paginator({ lastPage }) {
 
   useEffect(() => {
     const queries = parseQueryString(location.search);
-    if (Object.keys(queries).length > 0 && queries.page) {
+    if (Object.keys(queries).length === 1 && queries.page) {
+      setPage(Number(queries.page));
+      setUrl(location.pathname + "?");
+    } else if (Object.keys(queries).length > 0 && queries.page) {
       const urls = [];
       Object.keys(queries).forEach((key) => {
         if (key !== "page") {
@@ -41,6 +44,7 @@ export default function Paginator({ lastPage }) {
     );
     return result;
   };
+
   const prevItems = () => {
     const result = [];
     for (let i = page - 3; i < page; i++) {
@@ -58,6 +62,7 @@ export default function Paginator({ lastPage }) {
     }
     return result;
   };
+
   const currentItem = () => {
     const result = [];
     result.push(
@@ -71,6 +76,7 @@ export default function Paginator({ lastPage }) {
     );
     return result;
   };
+
   const nextItems = () => {
     const result = [];
     for (let i = page + 1; i <= page + 3; i++) {
@@ -88,6 +94,7 @@ export default function Paginator({ lastPage }) {
     }
     return result;
   };
+
   const lastItems = () => {
     const result = [];
     result.push(
@@ -106,7 +113,7 @@ export default function Paginator({ lastPage }) {
     <nav className="flex items-center justify-between px-4 sm:px-0 py-6">
       <div className="flex flex-1 w-0">
         <Link
-          to={page > 1 ? `${url}page=${page - 1}` : `${url}page=${page}`}
+          to={`${url}page=${page > 1 ? page - 1 : page}`}
           className={`${
             page > 1
               ? "text-gray-500 hover:text-gray-700"
@@ -141,7 +148,7 @@ export default function Paginator({ lastPage }) {
       </div>
       <div className="flex justify-end flex-1 w-0">
         <Link
-          to={page < lastPage ? `${url}page=${page + 1}` : `${url}page=${page}`}
+          to={`${url}page=${page < lastPage ? page + 1 : page}`}
           className={`${
             page < lastPage
               ? "text-gray-500 hover:text-gray-700"
