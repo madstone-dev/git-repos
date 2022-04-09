@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { bgList } from "../contances";
+import { bgList } from "../constances";
 import { classNames } from "../Utils/tailwindUtils";
 
 export default function DesktopNav({ navs, repos }) {

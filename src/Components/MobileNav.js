@@ -4,7 +4,7 @@ import { XIcon } from "@heroicons/react/outline";
 import { Link, useLocation } from "react-router-dom";
 import gitLogo from "../Assets/GitHub-Mark-64px.png";
 import { classNames } from "../Utils/tailwindUtils";
-import { bgList } from "../contances";
+import { bgList } from "../constances";
 
 export default function MobileNav({
   sidebarOpen,

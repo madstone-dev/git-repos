@@ -6,7 +6,7 @@ import { parseQueryString } from "../Utils/paginationUtils";
 import Paginator from "../Components/Paginator";
 import { ReposContext } from "../ContextProviders/ReposProvider";
 import { classNames } from "../Utils/tailwindUtils";
-import { bgList } from "../contances";
+import { bgList } from "../constances";
 
 export default function Issue() {
   const location = useLocation();
