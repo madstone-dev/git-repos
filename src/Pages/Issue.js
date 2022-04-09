@@ -17,6 +17,7 @@ export default function Issue() {
   const [repo, setRepo] = useState(null);
   const [issues, setIssues] = useState([]);
   const { getRepo, removeRepo } = useContext(ReposContext);
+  const PER_PAGE = 30;
 
   useEffect(() => {
     const queries = parseQueryString(location.search);
@@ -34,7 +35,13 @@ export default function Issue() {
       .then((res) => res.json())
       .then((data) => {
         setRepo(repo);
-        setTotalPage(Math.ceil(repo.open_issues_count / 30));
+        setTotalPage(
+          Math.ceil(
+            repo.open_issues_count > 1000
+              ? 1000 / PER_PAGE
+              : repo.open_issues_count / PER_PAGE
+          )
+        );
         setIssues(data);
         setLoading(false);
       });
@@ -107,7 +114,7 @@ export default function Issue() {
                                 rel="noreferrer"
                                 className="hover:underline"
                               >
-                                <span>{issue.title}</span>
+                                <span className="break-all">{issue.title}</span>
                               </a>
                             </div>
                             <div>

@@ -6,6 +6,7 @@ import { parseQueryString } from "../Utils/paginationUtils";
 import Paginator from "../Components/Paginator";
 import { ReposContext } from "../ContextProviders/ReposProvider";
 import { numberFormat } from "../Utils/utils";
+import { classNames } from "../Utils/tailwindUtils";
 
 export default function Search() {
   const location = useLocation();
@@ -14,7 +15,8 @@ export default function Search() {
   const [totalResults, setTotalResults] = useState(0);
   const [totalPage, setTotalPage] = useState(1);
   const [repos, setRepos] = useState([]);
-  const { addRepo } = useContext(ReposContext);
+  const { addRepo, getRepos } = useContext(ReposContext);
+  const PER_PAGE = 30;
 
   const markString = useCallback((text, keyword) => {
     if (!text) return;
@@ -31,6 +33,17 @@ export default function Search() {
       </>
     );
   }, []);
+
+  const checkExistsRepo = useCallback(
+    (target) => {
+      const repos = getRepos();
+      for (const repo of repos) {
+        if (target.id === repo.id) return true;
+      }
+      return false;
+    },
+    [getRepos]
+  );
 
   useEffect(() => {
     const queries = parseQueryString(location.search);
@@ -50,7 +63,11 @@ export default function Search() {
         setTotalResults(data.total_count > 1000 ? 1000 : data.total_count);
         setKeyword(keyword);
         setTotalPage(
-          Math.ceil(data.total_count > 1000 ? 1000 / 30 : data.total_count / 30)
+          Math.ceil(
+            data.total_count > 1000
+              ? 1000 / PER_PAGE
+              : data.total_count / PER_PAGE
+          )
         );
         setRepos(data.items);
         setLoading(false);
@@ -114,7 +131,9 @@ export default function Search() {
                                 rel="noreferrer"
                                 className="hover:underline text-sky-500"
                               >
-                                <span>{markString(repo.name, keyword)}</span>
+                                <span className="breack-all">
+                                  {markString(repo.full_name, keyword)}
+                                </span>
                               </a>
                             </div>
                             <div>
@@ -132,12 +151,15 @@ export default function Search() {
                   <p className="flex items-center space-x-4">
                     <button
                       type="button"
-                      className="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className={classNames(
+                        checkExistsRepo(repo) && "bg-gray-50",
+                        "inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      )}
                       onClick={() => {
                         addRepo(repo);
                       }}
                     >
-                      + 추가
+                      {checkExistsRepo(repo) ? "추가됨" : "+ 추가"}
                     </button>
                   </p>
                 </div>

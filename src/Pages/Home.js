@@ -15,6 +15,7 @@ export default function Issue() {
   const [issues, setIssues] = useState([]);
   const [totalIssues, setTotalIssues] = useState(0);
   const { getRepos } = useContext(ReposContext);
+  const PER_PAGE = 10;
 
   useEffect(() => {
     const queries = parseQueryString(location.search);
@@ -27,11 +28,17 @@ export default function Issue() {
     repos.forEach((repo) => {
       issuesCount += repo.open_issues_count;
     });
-    setTotalIssues(issuesCount);
-    setTotalPage(Math.ceil(issuesCount / (repos.length * 10)));
+    setTotalIssues(issuesCount > 1000 ? 1000 : issuesCount);
+    setTotalPage(
+      Math.ceil(
+        issuesCount > 1000
+          ? 1000 / (repos.length * PER_PAGE)
+          : issuesCount / (repos.length * PER_PAGE)
+      )
+    );
 
     const fetchIssues = async (repo) => {
-      const api = `https://api.github.com/repos/${repo.owner.login}/${repo.name}/issues?&per_page=10&page=${queries.page}`;
+      const api = `https://api.github.com/repos/${repo.owner.login}/${repo.name}/issues?&per_page=${PER_PAGE}&page=${queries.page}`;
       const res = await fetch(api, {
         headers: {
           Authorization: "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",
@@ -128,7 +135,7 @@ export default function Issue() {
                                 rel="noreferrer"
                                 className="hover:underline"
                               >
-                                <span>{issue.title}</span>
+                                <span className="break-all">{issue.title}</span>
                               </a>
                             </div>
                             <div>
