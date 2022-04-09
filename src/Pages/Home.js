@@ -43,7 +43,7 @@ export default function Issue() {
       const api = `https://api.github.com/repos/${repo.owner.login}/${repo.name}/issues?&per_page=${PER_PAGE}&page=${queries.page}`;
       const res = await fetch(api, {
         headers: {
-          Authorization: "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",
+          Authorization: process.env.REACT_APP_GIT_TOKEN,
         },
       });
       return await res.json();

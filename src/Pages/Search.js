@@ -55,7 +55,7 @@ export default function Search() {
     const api = `https://api.github.com/search/repositories?q=${keyword}&page=${queries.page}`;
     fetch(api, {
       headers: {
-        Authorization: "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",
+        Authorization: process.env.REACT_APP_GIT_TOKEN,
       },
     })
       .then((res) => res.json())
