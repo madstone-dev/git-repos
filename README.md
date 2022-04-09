@@ -36,13 +36,20 @@ $ npm start
 
 - 최대 1000개까지 조회 가능합니다.
 
+![홈에서 검색](https://user-images.githubusercontent.com/50011531/162585238-851f713a-4f1a-4961-8327-8001824eeb6c.gif)
+
 등록 된 저장소별 이슈를 조회할 수 있습니다.
 
 - 최대 1000개까지 조회 가능합니다.
 
+![개별 이슈](https://user-images.githubusercontent.com/50011531/162585248-d3668e04-4852-4725-a91a-d5e8d283debf.gif)
+
+
 등록 된 모든 저장소의 이슈를 조회할 수 있습니다.
 
 - 최대 1000개까지 검색 가능합니다.
+
+![이슈 모아보기](https://user-images.githubusercontent.com/50011531/162585273-ce3c571c-3a20-4a05-a080-a6cca67af26d.gif)
 
 <br>
 
