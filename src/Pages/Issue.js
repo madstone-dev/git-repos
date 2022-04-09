@@ -109,7 +109,7 @@ export default function Issue() {
                           <div className="flex space-y-1 flex-col">
                             <div>
                               <a
-                                href={`https://github.com/${repo.owner.login}/${repo.name}/issues/${issue.number}`}
+                                href={issue.html_url}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="hover:underline"
