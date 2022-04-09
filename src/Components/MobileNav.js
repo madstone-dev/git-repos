@@ -113,7 +113,7 @@ export default function MobileNav({
                         key={index}
                         to={`/issue?repo=${index}&page=1`}
                         className="group flex items-center px-3 py-2 text-base leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
-                        title={repo.name}
+                        title={repo.full_name}
                         onClick={() => {
                           setSidebarOpen(false);
                         }}
@@ -125,7 +125,7 @@ export default function MobileNav({
                           )}
                           aria-hidden="true"
                         />
-                        <span className="truncate">{repo.name}</span>
+                        <span className="truncate">{repo.full_name}</span>
                       </Link>
                     ))}
                   </div>

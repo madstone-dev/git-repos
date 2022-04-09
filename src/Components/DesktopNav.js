@@ -51,7 +51,7 @@ export default function DesktopNav({ navs, repos }) {
               key={index}
               to={`/issue?repo=${index}&page=1`}
               className="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50"
-              title={repo.owner.login + "/" + repo.name}
+              title={repo.full_name}
             >
               <span
                 className={classNames(
@@ -60,9 +60,7 @@ export default function DesktopNav({ navs, repos }) {
                 )}
                 aria-hidden="true"
               />
-              <span className="truncate">
-                {repo.owner.login}/{repo.name}
-              </span>
+              <span className="truncate">{repo.full_name}</span>
             </Link>
           ))}
         </div>
