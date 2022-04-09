@@ -1,5 +1,5 @@
 import Layout from "../Components/Layout";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import Loader from "../Components/Loader";
 import { parseQueryString } from "../Utils/paginationUtils";
@@ -10,6 +10,7 @@ import { bgList } from "../contances";
 
 export default function Issue() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [totalPage, setTotalPage] = useState(1);
   const [issues, setIssues] = useState([]);
@@ -20,6 +21,7 @@ export default function Issue() {
   useEffect(() => {
     const queries = parseQueryString(location.search);
     if (!queries.page) {
+      navigate("/?page=1");
       return;
     }
     setLoading(true);

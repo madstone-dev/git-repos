@@ -64,6 +64,8 @@ export const ReposProvider = ({ children }) => {
     const repos = localStorage.getItem(STORAGE_KEY);
     if (repos) {
       return JSON.parse(repos);
+    } else {
+      return [];
     }
   };
 
