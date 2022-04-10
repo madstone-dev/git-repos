@@ -60,7 +60,6 @@ export default function Issue() {
               ...issue,
               repo_index: i,
               repo_name: repos[i].name,
-              repo_owner: repos[i].owner.login,
             };
           }),
         ];
