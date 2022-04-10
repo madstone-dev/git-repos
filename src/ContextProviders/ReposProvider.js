@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 
 const STORAGE_KEY = "repos";
 
@@ -13,10 +13,32 @@ export const ReposContext = createContext({
 export const ReposProvider = ({ children }) => {
   const [repos, setRepos] = useState([]);
 
+  const fetchRepo = useCallback(async (repo) => {
+    const api = `https://api.github.com/repos/${repo.owner.login}/${repo.name}`;
+    const res = await fetch(api, {
+      headers: {
+        Authorization: process.env.REACT_APP_GIT_TOKEN,
+      },
+    });
+    return await res.json();
+  }, []);
+
+  const updateRepos = useCallback(
+    async (repos) => {
+      let newRepos = [];
+      for (let i = 0; i < repos.length; i++) {
+        const repo = await fetchRepo(repos[i]);
+        newRepos = [...newRepos, repo];
+      }
+      setRepos(newRepos);
+    },
+    [fetchRepo]
+  );
+
   useEffect(() => {
     const repos = localStorage.getItem(STORAGE_KEY);
-    if (repos) setRepos(JSON.parse(repos));
-  }, [setRepos]);
+    if (repos) updateRepos(JSON.parse(repos));
+  }, [updateRepos]);
 
   const addRepo = (repo) => {
     const repos = localStorage.getItem(STORAGE_KEY);
