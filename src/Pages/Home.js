@@ -27,15 +27,17 @@ export default function Issue() {
     setLoading(true);
     const repos = getRepos();
     let issuesCount = 0;
+    let maxIssuesCount = 0;
     repos.forEach((repo) => {
+      if (repo.open_issues_count > maxIssuesCount) {
+        maxIssuesCount = repo.open_issues_count;
+      }
       issuesCount += repo.open_issues_count;
     });
     setTotalIssues(issuesCount > 1000 ? 1000 : issuesCount);
     setTotalPage(
       Math.ceil(
-        issuesCount > 1000
-          ? 1000 / (repos.length * PER_PAGE)
-          : issuesCount / (repos.length * PER_PAGE)
+        maxIssuesCount > 1000 ? 1000 / PER_PAGE : maxIssuesCount / PER_PAGE
       )
     );
 
