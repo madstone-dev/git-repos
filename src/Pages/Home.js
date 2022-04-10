@@ -8,7 +8,7 @@ import { ReposContext } from "../ContextProviders/ReposProvider";
 import { classNames } from "../Utils/tailwindUtils";
 import { bgList } from "../constances";
 
-export default function Issue() {
+export default function Home() {
   const location = useLocation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
