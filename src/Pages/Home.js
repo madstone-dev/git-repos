@@ -34,7 +34,7 @@ export default function Issue() {
       }
       issuesCount += repo.open_issues_count;
     });
-    setTotalIssues(issuesCount > 1000 ? 1000 : issuesCount);
+    setTotalIssues(issuesCount);
     setTotalPage(
       Math.ceil(
         maxIssuesCount > 1000 ? 1000 / PER_PAGE : maxIssuesCount / PER_PAGE
