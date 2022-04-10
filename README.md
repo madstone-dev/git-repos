@@ -16,13 +16,19 @@ https://madstone-dev.github.io/git-repos/#/?page=1
 
 ## 🕹 설치 및 시작방법
 
-install dependencies
+환경 설정
+
+```
+REACT_APP_GIT_TOKEN=${YOUR_ACCESS_TOKEN}
+```
+
+의존성 설치
 
 ```
 $ npm install
 ```
 
-serve with hot reload at localhost:3000
+실행
 
 ```
 $ npm start
@@ -43,7 +49,6 @@ $ npm start
 - 최대 1000개까지 조회 가능합니다.
 
 ![개별 이슈](https://user-images.githubusercontent.com/50011531/162585248-d3668e04-4852-4725-a91a-d5e8d283debf.gif)
-
 
 등록 된 모든 저장소의 이슈를 조회할 수 있습니다.
 
